@@ -5,13 +5,6 @@
 
 import React, {Component} from 'react';
 
-
-// const SearchBar = () => {
-//
-//     return <input />;
-//
-// }
-
 class SearchBar extends Component {
 
     constructor(props) {
@@ -20,13 +13,19 @@ class SearchBar extends Component {
     }
 
     render() {
-        return(
-        <div>
-            <input
-                value = {this.state.term}
-                onChange={(event) => this.setState({term:event.target.value})}/>
-            Value of Input : {this.state.term}
-        </div>);
+        return (
+            <div className="search-bar">
+                <input
+                    placeholder="What is in your mind ?"
+                    className="form-control"
+                    value={this.state.term}
+                    onChange={(event) => this.onInputChange(event.target.value)}/>
+            </div>);
+    }
+
+    onInputChange(term) {
+        this.setState({term});
+        this.props.onSearchTermChange(term);
     }
 }
 
